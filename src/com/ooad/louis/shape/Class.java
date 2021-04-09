@@ -23,12 +23,12 @@ public class Class extends Entity {
         ports.add(new Point(point.x-20, point.y+90));
 
         portPanelList = new ArrayList<>();
-        for (Point point1 : ports) {
+        /*for (Point point1 : ports) {
             JPanel panel = new JPanel();
             panel.setBackground(Color.black);
             panel.setBounds(point1.x, point1.y, width, height);
             portPanelList.add(panel);
-        }
+        }*/
     }
 
     public Class() {
@@ -44,12 +44,12 @@ public class Class extends Entity {
         ports.add(new Point(point.x+65, point.y+200));
         ports.add(new Point(point.x-20, point.y+90));
 
-        for (Point point1 : ports) {
+        /*for (Point point1 : ports) {
             JPanel panel = new JPanel();
             panel.setBackground(Color.black);
             panel.setBounds(point1.x, point1.y, width, height);
             portPanelList.add(panel);
-        }
+        }*/
     }
 
     @Override

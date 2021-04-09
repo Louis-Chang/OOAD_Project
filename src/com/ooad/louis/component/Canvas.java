@@ -22,7 +22,7 @@ public class Canvas extends JLayeredPane {
     private List<Point> portsToDraw = new ArrayList<>();
     private Entity entityNow;
     private JPanel panelNow;
-    //private int x1, y1, x2, y2;
+    private int x1, y1, x2, y2;
     private Mode mode;
 
 
@@ -30,32 +30,48 @@ public class Canvas extends JLayeredPane {
         entityList = new ArrayList<>();
         panelList = new ArrayList<>();
         lineList = new ArrayList<>();
-        addMouseListener(mode);
-        addMouseMotionListener(mode);
+        //addMouseListener(mode);
+        //addMouseMotionListener(mode);
+        //addMouseListener(new GroupMode());
+        /*addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                setStartPoint(e.getX(), e.getY());
+            }
 
-        JPanel panel = new JPanel();
-        panel.setBackground(Color.BLUE);
-        panel.setBounds(100, 100, 100, 100);
-        panel.setOpaque(false);
-        this.add(panel);
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                setEndPoint(e.getX(), e.getY());
+            }
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                super.mouseDragged(e);
+                setEndPoint(e.getX(), e.getY());
+            }
+        });*/
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.black);
-        for (int i=0; i<portsToDraw.size(); i++) {
-            g.fillRect(portsToDraw.get(i).x, portsToDraw.get(i).y, 20, 20);
-            /*JPanel panel = new JPanel();
-            panel.setBounds(portsToDraw.get(i).x, portsToDraw.get(i).y, 20, 20);
-            panel.setBackground(Color.black);
-            panel.addMouseListener(mode);
-            panel.addMouseMotionListener(mode);
-            this.add(panel);*/
-        }
+        g.setColor(Color.gray);
         //associationLine.createLine(g, 30, 300, 30, 190);
         //g.setColor(Color.lightGray);
+        int px = Math.min(x1,x2);
+        int py = Math.min(y1,y2);
+        int pw=Math.abs(x1-x2);
+        int ph=Math.abs(y1-y2);
+        g.drawRect(px, py, pw, ph);
         //g.fillRect(x1, y1, Math.abs(x2-x1), Math.abs(y2-y1));
+        /*int px = Math.min(x1,x2);
+        int py = Math.min(y1,y2);
+        int pw=Math.abs(x1-x2);
+        int ph=Math.abs(y1-y2);
+        g.fillRect(px, py, pw, ph);*/
+
         repaint();
     }
 
@@ -72,6 +88,17 @@ public class Canvas extends JLayeredPane {
             }
             for (MouseMotionListener mml : panel.getMouseMotionListeners()) {
                 panel.removeMouseMotionListener(mml);
+            }
+        }
+        for (int i=0; i<this.getEntityList().size(); i++) {
+            Shape shape = this.getEntityList().get(i);
+            for (JPanel panel : shape.getPortPanelList()) {
+                for (MouseListener ml : panel.getMouseListeners()) {
+                    panel.removeMouseListener(ml);
+                }
+                for (MouseMotionListener mml : panel.getMouseMotionListeners()) {
+                    panel.removeMouseMotionListener(mml);
+                }
             }
         }
     }
@@ -95,7 +122,7 @@ public class Canvas extends JLayeredPane {
         return entityList;
     }
 
-    public void setPortsToDraw(List<Point> portsToDraw) {
+    /*public void setPortsToDraw(List<Point> portsToDraw) {
         this.portsToDraw = portsToDraw;
     }
 
@@ -103,11 +130,11 @@ public class Canvas extends JLayeredPane {
         for (int i=0; i<portsToDraw.size(); i++) {
             this.portsToDraw.add(portsToDraw.get(i));
         }
-    }
+    }*/
 
-    public List<Point> getPortsToDraw() {
+    /*public List<Point> getPortsToDraw() {
         return portsToDraw;
-    }
+    }*/
 
     public List<JPanel> getPanelList() {
         return panelList;
@@ -146,6 +173,17 @@ public class Canvas extends JLayeredPane {
     public void setPanelNow(JPanel panelNow) {
         this.panelNow = panelNow;
     }
+
+    public void setStartPoint(int x, int y) {
+        this.x1 = x;
+        this.y1 = y;
+    }
+
+    public void setEndPoint(int x, int y) {
+        x2 = (x);
+        y2 = (y);
+    }
+
 
     public void group() {
 

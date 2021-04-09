@@ -77,10 +77,9 @@ public abstract class Entity extends Shape{
     }
 
     public void setPortPanelPosition() {
-        System.out.println("getPortPanelList().size(): " + getPortPanelList().size() + "getPorts().size: " + getPorts().size());
         for (int i=0; i<getPortPanelList().size(); i++) {
             JPanel panel1 = getPortPanelList().get(i);
-            panel1.setBounds(getPorts().get(i).x, getPorts().get(i).y, getWidth(), getHeight());
+            panel1.setBounds(getPorts().get(i).x, getPorts().get(i).y, 20, 20);
         }
     }
 

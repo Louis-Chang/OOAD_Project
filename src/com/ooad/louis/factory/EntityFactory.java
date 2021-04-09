@@ -34,17 +34,17 @@ public abstract class EntityFactory implements ShapeFactory{
         canvas.getPanelList().add(panel);
         canvas.add(panel, new Integer(canvas.getEntityList().indexOf(shape)));
 
-        /*for (int i=0; i<shape.getPorts().size(); i++) {
+        for (int i=0; i<shape.getPorts().size(); i++) {
             //g.fillRect(portsToDraw.get(i).x, portsToDraw.get(i).y, 20, 20);
             JPanel panel1 = new JPanel();
             panel1.setBounds(shape.getPorts().get(i).x, shape.getPorts().get(i).y, 20, 20);
-            panel1.setBackground(Color.black);
-            //panel1.setOpaque(false);
+            panel1.setBackground(Color.white);
+            panel1.setOpaque(true);
             panel1.addMouseListener(canvas.getMode());
             panel1.addMouseMotionListener(canvas.getMode());
             shape.getPortPanelList().add(panel1);
-            canvas.add(panel1);
-        }*/
+            canvas.add(panel1, new Integer(canvas.getEntityList().indexOf(shape)));
+        }
     }
 
 

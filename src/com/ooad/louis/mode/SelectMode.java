@@ -27,13 +27,28 @@ public class SelectMode extends Mode{
         if (entity.getIsSelect()%2 == 1) { //select
             System.out.println("select");
             canvas.setEntityNow(entity);
+            for (JPanel panel : entity.getPortPanelList()) {
+                //panel.setOpaque(true);
+                panel.setBackground(Color.BLACK);
+            }
+            for (int i=0; i<canvas.getEntityList().size(); i++) {
+                Shape shape = canvas.getEntityList().get(i);
+                if (shape.equals(entity) == false) {
+                    for (JPanel jPanel : shape.getPortPanelList()) {
+                        jPanel.setBackground(Color.white);
+                    }
+                }
+            }
             canvas.setPanelNow((JPanel)e.getSource());
-            canvas.setPortsToDraw(entity.getPorts());
+            //canvas.setPortsToDraw(entity.getPorts());
         } else { //unselect
             System.out.println("unselect");
             canvas.setEntityNow(null);
+            for (JPanel panel : entity.getPortPanelList()) {
+                panel.setBackground(Color.WHITE);
+            }
             canvas.setPanelNow(null);
-            canvas.setPortsToDraw(new ArrayList<>());
+            //canvas.setPortsToDraw(new ArrayList<>());
         }
     }
 
@@ -54,12 +69,9 @@ public class SelectMode extends Mode{
         int x = e.getX() + entity.getPoint().x;
         int y = e.getY() + entity.getPoint().y;
         //entity.setIsSelect(entity.getIsSelect()+1);
-
-        canvas.getPortsToDraw().clear();
-
         entity.setPoint(new Point(x, y));
         entity.getPanel().setBounds(x, y, entity.getWidth(), entity.getHeight());
-        //entity.setPortPanelPosition();
+        entity.setPortPanelPosition();
     }
 
     /*public int getEntityIsSelect() {
