@@ -6,6 +6,7 @@ import com.ooad.louis.util.ConstantValue;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UseCase extends Entity{
 
@@ -24,6 +25,8 @@ public class UseCase extends Entity{
         ports.add(new Point(point.x+100, point.y+40));
         ports.add(new Point(point.x+40, point.y+100));
         ports.add(new Point(point.x-20, point.y+40));
+
+        portPanelList = new ArrayList<>();
     }
 
     @Override
@@ -51,9 +54,8 @@ public class UseCase extends Entity{
         return color;
     }
 
-    /*@Override
-    public JPanel toDraw(int x, int y) {
-        createEntityMode = new CreateUseCase();
-        return createEntityMode.draw(x, y);
-    }*/
+    @Override
+    public List<JPanel> getPortPanelList() {
+        return super.getPortPanelList();
+    }
 }

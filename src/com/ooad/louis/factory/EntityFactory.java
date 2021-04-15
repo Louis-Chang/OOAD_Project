@@ -38,8 +38,8 @@ public abstract class EntityFactory implements ShapeFactory{
             //g.fillRect(portsToDraw.get(i).x, portsToDraw.get(i).y, 20, 20);
             JPanel panel1 = new JPanel();
             panel1.setBounds(shape.getPorts().get(i).x, shape.getPorts().get(i).y, 20, 20);
-            panel1.setBackground(Color.white);
-            panel1.setOpaque(true);
+            panel1.setBackground(Color.black);
+            panel1.setOpaque(false);
             panel1.addMouseListener(canvas.getMode());
             panel1.addMouseMotionListener(canvas.getMode());
             shape.getPortPanelList().add(panel1);
