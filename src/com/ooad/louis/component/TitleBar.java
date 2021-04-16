@@ -1,5 +1,8 @@
 package com.ooad.louis.component;
 
+import com.ooad.louis.mode.GroupMode;
+import com.ooad.louis.mode.SelectMode;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,7 +17,7 @@ public class TitleBar extends JMenuBar {
         canvas = Canvas.getInstance();
         file = new JMenu("File");
         edit = new JMenu("Edit");
-        group = new JMenuItem("Gruop");
+        group = new JMenuItem("Group");
         group.addActionListener(new GroupObjectListener());
         ungroup = new JMenuItem("UnGroup");
         ungroup.addActionListener(new UngroupObjectListener());
@@ -39,15 +42,22 @@ public class TitleBar extends JMenuBar {
         }
     }
 
-    class UngroupObjectListener implements ActionListener {
+    class GroupObjectListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            canvas.unGroup();
+            //canvas.group();
+            if (SelectMode.class.equals(canvas.getMode().getClass())) {
+                canvas.addMouseListener(new GroupMode());
+                canvas.addMouseMotionListener(new GroupMode());
+            } else {
+                JOptionPane.showMessageDialog(canvas, "Please change to Select mode! ");
+            }
         }
     }
 
-    class GroupObjectListener implements ActionListener {
+    class UngroupObjectListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            canvas.group();
+            //canvas.unGroup();
+            //canvas.removeMode();
         }
     }
 

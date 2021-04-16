@@ -61,9 +61,10 @@ public class ToolPanel extends JPanel {
                     functionBtn btn = (functionBtn) e.getSource();
                     canvas.removeMode();
                     canvas.setMode(btn.getMode());
-                    canvas.addMouseListener(btn.getMode());
                     if (SelectMode.class.equals(canvas.getMode().getClass())) {
                         canvas.addModeToPanel();
+                    } else {
+                        canvas.addMouseListener(btn.getMode());
                     }
                     System.out.println(canvas.getMode());
                     //tool = toolBar.indexOf(btn);

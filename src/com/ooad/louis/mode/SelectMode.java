@@ -21,7 +21,7 @@ public class SelectMode extends Mode{
     public void mouseClicked(MouseEvent e) {
         super.mouseClicked(e);
         Entity entity = (Entity) canvas.getEntityList().get(canvas.getPanelList().indexOf((JPanel)e.getSource()));
-        System.out.println("e list: " + canvas.getEntityList().size() + "  p list: " + canvas.getPanelList().size());
+        //System.out.println("e list: " + canvas.getEntityList().size() + "  p list: " + canvas.getPanelList().size());
         entity.setIsSelect(entity.getIsSelect()+1);
 
         if (entity.getIsSelect()%2 == 1) { //select
@@ -59,6 +59,7 @@ public class SelectMode extends Mode{
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
+        System.out.println("select mode");
     }
 
     @Override

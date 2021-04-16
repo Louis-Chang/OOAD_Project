@@ -6,6 +6,7 @@ import com.ooad.louis.shape.*;
 import com.ooad.louis.factory.EntityFactory;
 import com.ooad.louis.shape.Class;
 import com.ooad.louis.shape.Shape;
+import com.ooad.louis.util.ConstantValue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,20 +58,13 @@ public class Canvas extends JLayeredPane {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        g.setColor(Color.gray);
+        g.setColor(Color.lightGray);
         //associationLine.createLine(g, 30, 300, 30, 190);
-        //g.setColor(Color.lightGray);
         int px = Math.min(x1,x2);
         int py = Math.min(y1,y2);
         int pw=Math.abs(x1-x2);
         int ph=Math.abs(y1-y2);
-        g.drawRect(px, py, pw, ph);
-        //g.fillRect(x1, y1, Math.abs(x2-x1), Math.abs(y2-y1));
-        /*int px = Math.min(x1,x2);
-        int py = Math.min(y1,y2);
-        int pw=Math.abs(x1-x2);
-        int ph=Math.abs(y1-y2);
-        g.fillRect(px, py, pw, ph);*/
+        g.fillRect(px, py, pw, ph);
 
         repaint();
     }
@@ -185,8 +179,16 @@ public class Canvas extends JLayeredPane {
     }
 
 
-    public void group() {
-
+    public boolean isGroup(Shape entity) {
+        boolean isInside = false;
+        if (entity.getPoint().x+entity.getWidth()>x1 && entity.getPoint().y+entity.getHeight()>y1 &&
+                entity.getPoint().x<x2 && entity.getPoint().y<y2) {
+            isInside = true;
+        } else if (entity.getPoint().x<x2 && entity.getPoint().y+entity.getHeight()>y1 &&
+                entity.getPoint().x>x1 && entity.getPoint().y<y2) {
+            isInside = true;
+        }
+        return isInside;
     }
 
     public void unGroup() {
