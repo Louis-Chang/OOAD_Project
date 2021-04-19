@@ -20,7 +20,8 @@ public class Canvas extends JLayeredPane {
     private List<Shape> entityList;
     private List<JPanel> panelList;
     private List<Line> lineList;
-    private List<Point> portsToDraw = new ArrayList<>();
+    //private List<Point> portsToDraw = new ArrayList<>();
+    private List<Entity> selectList;
     private Entity entityNow;
     private JPanel panelNow;
     private int x1, y1, x2, y2;
@@ -31,6 +32,7 @@ public class Canvas extends JLayeredPane {
         entityList = new ArrayList<>();
         panelList = new ArrayList<>();
         lineList = new ArrayList<>();
+        selectList = new ArrayList<>();
         //addMouseListener(mode);
         //addMouseMotionListener(mode);
         //addMouseListener(new GroupMode());
@@ -200,5 +202,9 @@ public class Canvas extends JLayeredPane {
             instance = new Canvas();
         }
         return instance;
+    }
+
+    public List<Entity> getSelectList() {
+        return selectList;
     }
 }

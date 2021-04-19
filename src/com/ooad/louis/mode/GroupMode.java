@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 public class GroupMode extends SelectMode{
 
+
     public GroupMode() {
         canvas = Canvas.getInstance();
     }
@@ -27,6 +28,7 @@ public class GroupMode extends SelectMode{
         for (Shape entity : canvas.getEntityList()) {
             if (canvas.isGroup(entity)) {
                 entity.setIsSelect(entity.getIsSelect()+1);
+                canvas.getSelectList().add((Entity) entity);
                 JPanel jPanel = canvas.getPanelList().get(canvas.getEntityList().indexOf(entity));
                 for (JPanel port : entity.getPortPanelList()) {
                     port.setOpaque(true);
